@@ -10,7 +10,7 @@ public class Sprinkler : MonoBehaviour
     private Transform[] sprinklers;
 
     float delayAndSpawnRate = 1.5f;
-    float timeUntilNextStage = 5;
+    float eachStageDuration = 10;
     int stages = 3;
     void Start()
     {
@@ -32,7 +32,7 @@ public class Sprinkler : MonoBehaviour
     }
     IEnumerator Schedule()
     {
-        yield return new WaitForSeconds(timeUntilNextStage);
+        yield return new WaitForSeconds(eachStageDuration);
         if (stages>1)
         {
             stages--;

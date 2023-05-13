@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Water
   - Clock
+  - Plant
   layers:
   - Default
   - TransparentFX
