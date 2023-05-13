@@ -1,56 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Sprinkler : MonoBehaviour
 {
     [SerializeField]
     private GameObject water;
-    [SerializeField]
-    private Transform[] sprinklers;
 
-    [SerializeField]
-    float delayAndSpawnRate = 1.5f;
-    [SerializeField]
-    float eachStageDuration = 30;
-    [SerializeField]
-    float speedIncrements = 0.5f;
-    [SerializeField]
-    int stages = 3;
+    Animator animator;
+    // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnObject", delayAndSpawnRate, delayAndSpawnRate);
-        StartCoroutine(Schedule());
+        animator = GetComponent<Animator>();
     }
-    public void SpawnObject()
+    public void SpawnWater()
     {
-        System.Random rand = new System.Random();
-        Instantiate(water, sprinklers[rand.Next(sprinklers.Length)]);
+        animator.SetBool("SprinklerState", true);
+        StartCoroutine("WaterDrop");
     }
 
-    void IncreaseSpawnRate()
+    IEnumerator WaterDrop()
     {
-        if (delayAndSpawnRate > speedIncrements)
-        {
-            delayAndSpawnRate -= speedIncrements;
-        }
-    }
-    IEnumerator Schedule()
-    {
-        yield return new WaitForSeconds(eachStageDuration);
-        if (stages>1)
-        {
-            stages--;
-            IncreaseSpawnRate();
-            StartCoroutine(Schedule());
-        }
-        else
-        {
-            CancelInvoke("SpawnObject");
-        }
-        
+        yield return new WaitForSeconds(2);
+        Instantiate(water, transform);
+        animator.SetBool("SprinklerState", false);
     }
 }
-
-    
-
