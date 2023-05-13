@@ -20,12 +20,12 @@ public class BugAttacks : MonoBehaviour
     private void Update()
     {
         sp.sprite = sprites[plantstate];
-        if (plantstate > 4)
+        if (plantstate == 6)
         {
             Debug.Log("Your Plant has been destroyed");
             Application.Quit();
         }
-        if(criteria > 2)
+        if(criteria == 2)
         {
             Debug.Log("You have sprouted a new plant");
             Application.Quit();
@@ -34,11 +34,10 @@ public class BugAttacks : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(plantstate + " " + criteria);
         if (collision.tag == "BadBug")
-            plantstate = plantstate >= 5 ? 5 : plantstate++;
+            plantstate = plantstate >= 6 ? 6 : ++plantstate;
 
         if (collision.tag == "GoodBug")
-            plantstate = plantstate <= 0 ? criteria++ : plantstate--;
+            plantstate = plantstate <= 0 ? criteria++ : --plantstate;
     }
 }
