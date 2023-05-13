@@ -41,6 +41,8 @@ public class PlantScript : MonoBehaviour
             water = water + 1;
             UpdateState();
         }
+        if(collision.tag == "GoodBug" || collision.tag == "BadBug")
+            Destroy(collision.gameObject);
     }
     public void UpdateState()
     {
