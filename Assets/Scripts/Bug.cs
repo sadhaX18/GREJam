@@ -15,6 +15,9 @@ public class Bug : MonoBehaviour
     {
         transform.Translate((plant.position - transform.position).normalized * Time.deltaTime, Space.World);
     }
-
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Plant")
+            Destroy(this.gameObject);
+    }
 }
