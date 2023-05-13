@@ -20,4 +20,10 @@ public class Bug : MonoBehaviour
         if (collision.tag == "Plant")
             Destroy(this.gameObject);
     }
+
+    private void OnMouseOver()
+    {
+        if(Input.GetMouseButtonDown(0))
+            Destroy(this.gameObject);
+    }
 }
