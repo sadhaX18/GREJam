@@ -9,8 +9,13 @@ public class Sprinkler : MonoBehaviour
     [SerializeField]
     private Transform[] sprinklers;
 
+    [SerializeField]
     float delayAndSpawnRate = 1.5f;
-    float eachStageDuration = 10;
+    [SerializeField]
+    float eachStageDuration = 30;
+    [SerializeField]
+    float speedIncrements = 0.5f;
+    [SerializeField]
     int stages = 3;
     void Start()
     {
@@ -25,9 +30,9 @@ public class Sprinkler : MonoBehaviour
 
     void IncreaseSpawnRate()
     {
-        if (delayAndSpawnRate > 0.5f)
+        if (delayAndSpawnRate > speedIncrements)
         {
-            delayAndSpawnRate -= 0.5f;
+            delayAndSpawnRate -= speedIncrements;
         }
     }
     IEnumerator Schedule()

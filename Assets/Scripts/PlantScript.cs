@@ -44,10 +44,10 @@ public class PlantScript : MonoBehaviour
     }
     public void UpdateState()
     {
-        plantState = water;
+        if (water < plant.Length) { plantState = water; }
         if (plant[plantState] != null)
         {
-            spriteRenderer.sprite = plant[water];
+            spriteRenderer.sprite = plant[plantState];
             capsuleCollider.size= new Vector2(colliderSettings[plantState,0], colliderSettings[plantState,1]);
             capsuleCollider.offset = new Vector2(colliderSettings[plantState,2], colliderSettings[plantState,3]);
             capsuleCollider.direction = (colliderSettings[plantState, 4] == 0.0f) ? CapsuleDirection2D.Vertical : CapsuleDirection2D.Horizontal;
