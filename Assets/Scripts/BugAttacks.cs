@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class BugAttacks : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Sprite[] sprites;
+    int plantstate;
+
+    SpriteRenderer sp;
+
+    private void Start()
     {
-        
+        sp = GetComponent<SpriteRenderer>();
+        plantstate = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        sp.sprite = sprites[plantstate];
+        if (plantstate > 4)
+        {
+            Application.Quit();
+            Debug.Log("Your Plant has been destroyed");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "BadBug")
+            plantstate++;
     }
 }
