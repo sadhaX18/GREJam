@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class Timer : MonoBehaviour
 {
-    public float timeRemaining = 10;
+    public float timeRemaining = 90;
     private bool timerIsRunning = false;
     private void Start()
     {
         timerIsRunning = true;
+        //clock = GetComponent<Text>();
     }
     void Update()
     {
@@ -34,5 +36,6 @@ public class Timer : MonoBehaviour
             timerIsRunning = true;
         }
     }
-    public float GetRemainingTime() { return timeRemaining; }
+    public float GetTime() { return timeRemaining; }
+    
 }
