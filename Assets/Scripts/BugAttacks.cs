@@ -6,6 +6,7 @@ public class BugAttacks : MonoBehaviour
 {
     public Sprite[] sprites;
     int plantstate;
+    int criteria;
 
     SpriteRenderer sp;
 
@@ -13,6 +14,7 @@ public class BugAttacks : MonoBehaviour
     {
         sp = GetComponent<SpriteRenderer>();
         plantstate = 0;
+        criteria = 0;
     }
 
     private void Update()
@@ -20,14 +22,23 @@ public class BugAttacks : MonoBehaviour
         sp.sprite = sprites[plantstate];
         if (plantstate > 4)
         {
-            Application.Quit();
             Debug.Log("Your Plant has been destroyed");
+            Application.Quit();
+        }
+        if(criteria > 2)
+        {
+            Debug.Log("You have sprouted a new plant");
+            Application.Quit();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "BadBug")
-            plantstate++;
+        Debug.Log(plantstate + " " + criteria);
+        if (collision.tag == "BadBug")
+            plantstate = plantstate >= 5 ? 5 : plantstate++;
+
+        if (collision.tag == "GoodBug")
+            plantstate = plantstate <= 0 ? criteria++ : plantstate--;
     }
 }

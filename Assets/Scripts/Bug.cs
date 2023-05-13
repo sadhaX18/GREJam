@@ -13,6 +13,8 @@ public class Bug : MonoBehaviour
 
     private void Update()
     {
+        var heading = transform.InverseTransformPoint(plant.position);
+        transform.Rotate(transform.localRotation.x, transform.localRotation.y, heading.z);
         transform.Translate((plant.position - transform.position).normalized * Time.deltaTime, Space.World);
     }
     private void OnTriggerEnter2D(Collider2D collision)

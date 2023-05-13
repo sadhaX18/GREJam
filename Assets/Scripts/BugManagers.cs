@@ -29,8 +29,7 @@ public class BugManagers : MonoBehaviour
         }
         else
         {
-            //t = Random.Range(1, 2);
-            t = 5f;
+            t = Random.Range(1, 2);
             return true;
         }
     }
